@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Explorer — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../stylesheet/colors_and_type.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#F3EEE6;--teal:#C1D3D3;--beige:#D7B6A4;--dark:#383838;--yellow:#FFCC40;
+  --deep-teal:#1F4F55;--deep-teal-2:#143538;--lavender:#C3B3E5;--warm-gray:#B8B2AC;--black:#1E1E1E;
+  --font-display:'Bodoni Moda',serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-hand:'Caveat',cursive;
+  --font-map:'DIN Pro','DM Sans',sans-serif;
+}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--black);color:var(--cream);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+
+/* slide container */
+.slide{
+  width:100vw;height:100vh;scroll-snap-align:start;position:relative;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  overflow:hidden;padding:5vh 8vw;
+}
+
+/* topographic background pattern */
+.slide::before{
+  content:'';position:absolute;inset:0;opacity:.04;
+  background-image:
+    repeating-radial-gradient(circle at 20% 50%, transparent 0, transparent 40px, rgba(193,211,211,.3) 41px, transparent 42px),
+    repeating-radial-gradient(circle at 80% 30%, transparent 0, transparent 60px, rgba(193,211,211,.2) 61px, transparent 62px),
+    repeating-radial-gradient(circle at 50% 80%, transparent 0, transparent 80px, rgba(193,211,211,.15) 81px, transparent 82px);
+  pointer-events:none;z-index:0;
+}
+.slide>*{position:relative;z-index:1}
+
+/* typography */
+h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.05;letter-spacing:-.02em;color:var(--cream)}
+h2{font-family:var(--font-display);font-weight:600;font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.1;letter-spacing:-.01em}
+h2 em{font-style:italic;color:var(--teal);font-weight:500}
+h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.3rem,2vw,1.8rem);line-height:1.2}
+p,.body{font-family:var(--font-body);font-size:clamp(.95rem,1.3vw,1.15rem);line-height:1.6;font-weight:400;color:rgba(243,238,230,.8)}
+.label{font-family:var(--font-body);font-weight:600;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow)}
+.small{font-size:.85rem;color:rgba(243,238,230,.5)}
+.hand{font-family:var(--font-hand);font-weight:400;color:var(--beige)}
+
+/* slide number */
+.slide-num{
+  position:absolute;bottom:3vh;right:4vw;display:flex;align-items:center;gap:.7rem;
+  font-family:var(--font-display);font-size:.9rem;color:rgba(243,238,230,.22);font-style:italic;
+}
+.slide-num .rule{width:26px;height:1px;background:rgba(243,238,230,.18)}
+
+/* brand line at top */
+.brand-line{
+  position:absolute;top:3vh;left:4vw;
+  display:flex;align-items:center;gap:.6rem;z-index:5;
+}
+.brand-line .dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 14px rgba(255,204,64,.55)}
+.brand-line span{font-family:var(--font-body);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,238,230,.34);font-weight:600}
+
+/* grid layouts */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;width:100%;max-width:1100px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:3rem;width:100%;max-width:1000px}
+@media(max-width:768px){.grid-3,.grid-2{grid-template-columns:1fr;gap:1.5rem}}
+
+/* cards */
+.card{
+  background:rgba(243,238,230,.04);border:1px solid rgba(243,238,230,.08);
+  border-radius:12px;padding:2rem;position:relative;overflow:hidden;
+  transition:border-color .3s, transform .3s;
+}
+.card:hover{border-color:rgba(255,204,64,.2);transform:translateY(-2px)}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--yellow),transparent);opacity:0;
+  transition:opacity .3s;
+}
+.card:hover::before{opacity:1}
+.card .icon{font-size:1.8rem;margin-bottom:1rem;display:block}
+.card h3{margin-bottom:.6rem}
+.card p{font-size:.9rem;color:rgba(243,238,230,.6)}
+
+/* stat callout */
+.stat{text-align:center;padding:1.5rem}
+.stat .number{font-family:var(--font-display);font-size:clamp(2.5rem,4vw,3.5rem);font-weight:700;color:var(--yellow);line-height:1}
+.stat .unit{font-size:.85rem;color:rgba(243,238,230,.5);margin-top:.3rem}
+
+/* divider */
+.divider{width:60px;height:2px;background:var(--yellow);margin:1.5rem 0;opacity:.6}
+.divider-sm{width:30px;height:1px;background:var(--beige);margin:1rem 0;opacity:.4}
+
+/* tag */
+.tag{
+  display:inline-block;padding:.25rem .7rem;border-radius:20px;font-size:.7rem;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid rgba(255,204,64,.3);color:var(--yellow);margin-right:.4rem;
+}
+.tag.teal{border-color:rgba(193,211,211,.3);color:var(--teal)}
+
+/* competitor row */
+.comp-row{
+  display:flex;align-items:center;gap:1.2rem;padding:1rem 1.5rem;
+  border-bottom:1px solid rgba(243,238,230,.06);
+}
+.comp-row:last-child{border-bottom:none}
+.comp-name{font-weight:600;min-width:140px;color:var(--cream)}
+.comp-con{color:rgba(243,238,230,.4);font-size:.85rem;flex:1}
+.comp-verdict{font-size:.8rem;padding:.2rem .6rem;border-radius:4px;background:rgba(255,204,64,.1);color:var(--yellow)}
+
+/* phase timeline */
+.timeline{display:flex;gap:0;width:100%;max-width:1000px}
+.phase{
+  flex:1;padding:1.8rem;border-left:2px solid rgba(243,238,230,.1);position:relative;
+}
+.phase:first-child{border-left:2px solid var(--yellow)}
+.phase::before{
+  content:'';position:absolute;left:-6px;top:1.8rem;width:10px;height:10px;
+  border-radius:50%;border:2px solid rgba(243,238,230,.2);background:var(--black);
+}
+.phase:first-child::before{border-color:var(--yellow);background:var(--yellow)}
+.phase .label{margin-bottom:.6rem}
+.phase ul{list-style:none;padding:0}
+.phase ul li{font-size:.85rem;color:rgba(243,238,230,.6);padding:.2rem 0;padding-left:1.2rem;position:relative}
+.phase ul li::before{content:'';position:absolute;left:0;top:.55rem;width:6px;height:6px;border-radius:50%;background:rgba(193,211,211,.3)}
+.phase:first-child ul li::before{background:var(--yellow)}
+
+/* quote */
+.quote{
+  font-family:var(--font-display);font-style:italic;font-size:clamp(1.1rem,1.8vw,1.5rem);
+  color:var(--teal);line-height:1.5;max-width:700px;text-align:center;
+  position:relative;padding:0 2rem;
+}
+.quote::before,.quote::after{
+  font-family:var(--font-display);font-size:3rem;color:var(--yellow);opacity:.3;
+  position:absolute;line-height:1;
+}
+.quote::before{content:'\201C';left:-.5rem;top:-.5rem}
+.quote::after{content:'\201D';right:-.5rem;bottom:-.8rem}
+
+/* team */
+.team-member{text-align:center;padding:1.5rem}
+.team-member .avatar{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 1rem;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-weight:700;font-size:1.2rem;
+  color:var(--black);
+}
+.team-member h3{margin-bottom:.3rem}
+.team-member p{font-size:.8rem;color:rgba(243,238,230,.5)}
+
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.slide .anim{animation:fadeUp .8s ease both}
+.slide .anim-d1{animation-delay:.1s}
+.slide .anim-d2{animation-delay:.2s}
+.slide .anim-d3{animation-delay:.3s}
+.slide .anim-d4{animation-delay:.4s}
+.slide .anim-d5{animation-delay:.5s}
+.slide .anim-d6{animation-delay:.6s}
+
+/* fog-of-war decorative element */
+.fog-overlay{
+  position:absolute;pointer-events:none;z-index:0;
+}
+.fog-left{
+  left:0;top:0;bottom:0;width:15vw;
+  background:linear-gradient(90deg,rgba(30,30,30,.9),transparent);
+}
+.fog-right{
+  right:0;top:0;bottom:0;width:15vw;
+  background:linear-gradient(270deg,rgba(30,30,30,.9),transparent);
+}
+
+/* progress bar */
+#progress{
+  position:fixed;top:0;left:0;height:2px;background:var(--yellow);z-index:999;
+  transition:width .3s;width:0;
+}
+
+/* nav hints */
+.nav-hint{
+  position:fixed;bottom:2vh;left:50%;transform:translateX(-50%);
+  font-size:.7rem;color:rgba(243,238,230,.15);letter-spacing:.1em;z-index:99;
+}
+
+/* slide-specific */
+.slide-title{background:linear-gradient(135deg,var(--black) 0%,#1a2a2c 50%,var(--black) 100%)}
+.slide-title h1{font-size:clamp(3.5rem,7vw,6rem);text-align:center}
+.slide-title h1 em{font-style:italic;color:var(--teal);font-weight:600}
+.slide-title .tagline{
+  font-family:var(--font-display);font-style:italic;font-size:clamp(1.1rem,2vw,1.6rem);
+  color:var(--teal);margin-top:1rem;text-align:center;
+}
+.slide-title .hand-tag{
+  font-family:var(--font-hand);font-size:clamp(1.4rem,2.2vw,1.9rem);color:var(--beige);
+  margin-top:.4rem;display:inline-block;transform:rotate(-3deg);
+}
+.slide-title .meta{
+  margin-top:2rem;display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;
+}
+.slide-title .meta span{
+  font-size:.75rem;color:rgba(243,238,230,.35);letter-spacing:.08em;
+}
+
+/* yellow accent stripe */
+.accent-stripe{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent 10%,var(--yellow) 50%,transparent 90%);
+}
+
+/* hexagon grid background (subtle) */
+.hex-bg{
+  position:absolute;inset:0;overflow:hidden;opacity:.03;pointer-events:none;z-index:0;
+}
+.hex-bg svg{width:100%;height:100%}
+
+/* ============================================================
+   FEATURE SLIDES — shared building blocks
+   Recipes lifted from specs/fog-of-war-map, specs/hud, specs/poi-ripple
+   ============================================================ */
+
+/* two-column feature layout */
+.slide-feature{align-items:stretch;padding:5vh 6vw}
+.feature-grid{
+  display:grid;grid-template-columns:.95fr 1.05fr;gap:4vw;
+  align-items:center;width:100%;max-width:1400px;margin:0 auto;flex:1;
+}
+@media(max-width:960px){.feature-grid{grid-template-columns:1fr}}
+.feature-copy{display:flex;flex-direction:column;justify-content:center;max-width:540px}
+.feature-phone-col{display:flex;justify-content:center;align-items:center;position:relative}
+.feature-phone-col::before{
+  content:'';position:absolute;width:440px;height:440px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,204,64,.07),transparent 60%);
+  filter:blur(18px);z-index:0;pointer-events:none;
+}
+
+/* feature eyebrow: "Feature · 01 / 03" */
+.feature-eyebrow{
+  display:flex;align-items:center;gap:.7rem;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--yellow);font-weight:700;
+}
+.feature-eyebrow .num{color:rgba(243,238,230,.35);font-family:ui-monospace,Menlo,monospace;letter-spacing:.05em}
+
+/* anatomy callouts (right-column list) */
+.anatomy{display:flex;flex-direction:column;gap:.7rem;margin-top:1.6rem}
+.anatomy .row{
+  display:grid;grid-template-columns:28px 1fr auto;gap:.9rem;align-items:center;
+  padding:.85rem 1rem;background:rgba(243,238,230,.025);border:1px solid rgba(243,238,230,.06);border-radius:10px;
+  transition:border-color .3s, transform .3s;
+}
+.anatomy .row:hover{border-color:rgba(255,204,64,.2);transform:translateX(3px)}
+.anatomy .row .n{
+  width:24px;height:24px;border-radius:50%;background:var(--yellow);color:var(--black);
+  font-family:var(--font-display);font-weight:700;font-size:.8rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.anatomy .row .lbl{font-weight:600;font-size:.92rem;color:var(--cream);line-height:1.3}
+.anatomy .row .lbl .desc{display:block;font-weight:400;font-size:.78rem;color:rgba(243,238,230,.55);margin-top:.15rem;line-height:1.4}
+.anatomy .row .tok{font-family:ui-monospace,Menlo,monospace;font-size:.7rem;color:var(--yellow);white-space:nowrap;text-align:right}
+
+/* Apple-Maps paint recipe (from specs/fog-of-war-map) */
+.am{position:relative;overflow:hidden;background:#F1EBDF;color:#1f1f1f;font-family:var(--font-map)}
+.am .water{position:absolute;background:#AFD3E2}
+.am .park{position:absolute;background:#C8DAB0;border-radius:2px}
+.am .street{position:absolute;background:#fff;box-shadow:0 0 0 .5px rgba(0,0,0,.08)}
+.am .street.main{box-shadow:0 0 0 .5px rgba(0,0,0,.12)}
+.am .shield{position:absolute;background:#E74C3C;color:#fff;font-weight:700;font-size:8px;padding:1px 3px;border-radius:3px;letter-spacing:.02em}
+.am .metro{position:absolute;width:12px;height:12px;background:#2E6FD6;border-radius:3px;color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.am .metro::before{content:"M"}
+.am .lab{position:absolute;color:#1f1f1f;transform:translate(-50%,-50%);white-space:nowrap;letter-spacing:.02em;text-align:center}
+.am .lab.hood{font-weight:700;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:#3a3a3a}
+.am .lab.district{font-style:italic;font-size:8px;color:#5a5a5a;font-weight:400}
+.am .lab.city{font-weight:700;font-size:15px;color:#1f1f1f;letter-spacing:-.01em}
+
+/* fog layer */
+.fog-layer{
+  position:absolute;inset:0;pointer-events:none;
+  backdrop-filter:blur(14px) saturate(.85) brightness(1.04);
+  -webkit-backdrop-filter:blur(14px) saturate(.85) brightness(1.04);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.5), rgba(215,182,164,.08) 60%, transparent 100%),
+    radial-gradient(circle at 70% 80%, rgba(255,255,255,.42), rgba(193,211,211,.06) 55%, transparent 100%),
+    linear-gradient(180deg, rgba(243,238,230,.4), rgba(215,182,164,.36));
+}
+.bokeh{position:absolute;border-radius:50%;filter:blur(10px);mix-blend-mode:screen;pointer-events:none}
+.b-cream{background:radial-gradient(circle, rgba(255,247,225,.85), rgba(255,247,225,0) 70%)}
+.b-teal {background:radial-gradient(circle, rgba(193,211,211,.75), rgba(193,211,211,0) 70%)}
+.b-rose {background:radial-gradient(circle, rgba(226,195,176,.7),  rgba(226,195,176,0) 70%)}
+
+/* phone frame */
+.phone-stage{
+  aspect-ratio:390/844;width:100%;max-width:320px;
+  background:#1E1E1E;border-radius:44px;padding:10px;
+  box-shadow:
+    0 40px 90px rgba(0,0,0,.55),
+    0 12px 30px rgba(0,0,0,.45),
+    inset 0 0 0 1px rgba(255,255,255,.04);
+  position:relative;margin:0 auto;
+}
+.phone-screen{width:100%;height:100%;border-radius:34px;overflow:hidden;position:relative;background:#F1EBDF}
+.notch{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:98px;height:24px;background:#000;border-radius:0 0 13px 13px;z-index:20}
+.status-bar{
+  position:absolute;top:0;left:0;right:0;height:40px;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 22px 0;font-family:var(--font-map);font-weight:600;font-size:12px;color:#1F4F55;pointer-events:none;
+}
+.status-bar .r{display:flex;gap:5px;align-items:center}
+
+/* HUD — variant A from specs/hud */
+.hud-row{position:absolute;top:52px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:center;z-index:12}
+.xp-capsule{
+  background:#1F4F55;color:#F3EEE6;border-radius:999px;padding:6px 14px 6px 5px;
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-map);font-weight:400;font-size:12px;letter-spacing:.01em;
+  box-shadow:0 6px 18px rgba(0,0,0,.32),0 1px 0 rgba(255,255,255,.08) inset;
+}
+.xp-capsule .lv{
+  width:22px;height:22px;border-radius:50%;background:#FFCC40;
+  color:#1F4F55;font-weight:700;font-size:10px;
+  display:flex;align-items:center;justify-content:center;
+}
+.xp-capsule .num{font-variant-numeric:tabular-nums}
+.xp-capsule .num b{font-weight:500;color:#FFCC40;margin-left:2px}
+
+.compass{
+  width:36px;height:36px;border-radius:50%;
+  background:#F3EEE6;border:1px solid rgba(31,79,85,.15);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.18);
+}
+
+/* player puck */
+.puck{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:16px;height:16px;border-radius:50%;background:#FFCC40;border:2px solid #1F4F55;
+  box-shadow:0 0 0 7px rgba(255,204,64,.22),0 0 22px rgba(255,204,64,.5);
+  z-index:14;
+  animation:puck-breathe 2.4s ease-in-out infinite;
+}
+@keyframes puck-breathe{
+  0%,100%{box-shadow:0 0 0 6px rgba(255,204,64,.18),0 0 18px rgba(255,204,64,.4)}
+  50%    {box-shadow:0 0 0 11px rgba(255,204,64,.28),0 0 28px rgba(255,204,64,.65)}
+}
+
+/* POI ripple / hex grid (from specs/poi-ripple/HexGrid.jsx) */
+.hex-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:11}
+.hex{
+  position:absolute;left:50%;top:50%;
+  width:26px;height:30px;
+  transform:translate(-50%,-50%) translate(var(--x),var(--y));
+  background:rgba(215,182,164,.86);
+  clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  box-shadow:inset 0 0 0 1px rgba(31,79,85,.05);
+  animation:hex-dissolve 4.5s cubic-bezier(.22,1,.36,1) infinite;
+  animation-delay:calc(var(--r) * 140ms);
+}
+@keyframes hex-dissolve{
+  0%   {opacity:1;transform:translate(-50%,-50%) translate(var(--x),var(--y)) scale(1)}
+  18%  {opacity:.2;transform:translate(-50%,-50%) translate(var(--x),var(--y)) scale(.94)}
+  40%  {opacity:0;transform:translate(-50%,-50%) translate(var(--x),var(--y)) scale(.8)}
+  80%  {opacity:0}
+  95%  {opacity:1;transform:translate(-50%,-50%) translate(var(--x),var(--y)) scale(1)}
+  100% {opacity:1}
+}
+
+/* discovery bloom */
+.bloom{
+  position:absolute;left:50%;top:50%;width:160px;height:160px;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(255,204,64,.55),rgba(255,204,64,0) 65%);
+  pointer-events:none;z-index:10;mix-blend-mode:screen;
+  animation:bloom-pulse 4.5s cubic-bezier(.22,1,.36,1) infinite;
+}
+@keyframes bloom-pulse{
+  0%,100%{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+  20%    {opacity:.95;transform:translate(-50%,-50%) scale(1.1)}
+  45%    {opacity:.4;transform:translate(-50%,-50%) scale(1.25)}
+  90%    {opacity:0;transform:translate(-50%,-50%) scale(.7)}
+}
+
+/* POI pin */
+.poi-pin{
+  position:absolute;left:50%;top:calc(50% - 64px);
+  width:30px;height:30px;border-radius:50%;
+  background:#1F4F55;border:2px solid #F3EEE6;
+  display:flex;align-items:center;justify-content:center;
+  color:#F3EEE6;
+  box-shadow:0 6px 16px rgba(0,0,0,.35),0 0 0 7px rgba(255,204,64,.18);
+  transform:translate(-50%,0);z-index:13;
+  animation:pin-pop 4.5s cubic-bezier(.22,1,.36,1) infinite;
+}
+@keyframes pin-pop{
+  0%,15%{transform:translate(-50%,-4px) scale(.4);opacity:0}
+  22%   {transform:translate(-50%,-12px) scale(1.12);opacity:1}
+  30%   {transform:translate(-50%,0) scale(1)}
+  85%   {transform:translate(-50%,0) scale(1);opacity:1}
+  100%  {transform:translate(-50%,-4px) scale(.4);opacity:0}
+}
+.poi-pin svg{width:14px;height:14px}
+
+/* small HUD thumbnail variants */
+.hud-variants{display:flex;gap:.8rem;margin-top:1.5rem;flex-wrap:wrap}
+.hud-variant{
+  flex:1;min-width:110px;padding:.8rem .9rem;border-radius:10px;
+  background:rgba(243,238,230,.03);border:1px solid rgba(243,238,230,.07);
+  display:flex;flex-direction:column;gap:.5rem;
+}
+.hud-variant.pick{border-color:rgba(255,204,64,.35);background:rgba(255,204,64,.05)}
+.hud-variant .hd{display:flex;justify-content:space-between;align-items:baseline}
+.hud-variant .hd .n{font-weight:700;font-size:.75rem;color:var(--cream);letter-spacing:.05em}
+.hud-variant .hd .t{font-family:ui-monospace,Menlo,monospace;font-size:.65rem;color:var(--yellow)}
+.hud-variant .demo{
+  height:44px;border-radius:6px;background:#F1EBDF;
+  display:flex;align-items:center;justify-content:flex-end;padding:0 6px;position:relative;overflow:hidden;
+}
+.hud-variant .demo::before{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(243,238,230,.35),rgba(215,182,164,.3));backdrop-filter:blur(2px)}
+.hud-variant .demo>*{position:relative;z-index:2}
+.hud-variant .note{font-size:.7rem;color:rgba(243,238,230,.52);line-height:1.4}
+.hud-variant .pick-pill{display:inline-block;background:var(--yellow);color:var(--black);font-weight:700;font-size:.6rem;letter-spacing:.12em;padding:2px 6px;border-radius:999px;text-transform:uppercase}
+
+/* mini xp pieces for the thumbnails */
+.xp-mini{padding:3px 7px 3px 3px;border-radius:999px;display:inline-flex;align-items:center;gap:4px;font-size:8px;font-weight:600;font-family:var(--font-map)}
+.xp-mini.a{background:#1F4F55;color:#F3EEE6}
+.xp-mini.a .d{width:12px;height:12px;border-radius:50%;background:#FFCC40;color:#1F4F55;font-size:7px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.xp-mini.a b{color:#FFCC40;font-weight:500}
+.xp-mini.b{background:rgba(243,238,230,.92);color:#1F4F55;border-radius:4px;padding:4px 6px;flex-direction:column;align-items:flex-start;gap:1px}
+.xp-mini.b .n{font-weight:700;font-size:9px}
+.xp-mini.b .l{font-size:6px;letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+.xp-mini.c{background:#F3EEE6;color:#1F4F55;border:1px solid rgba(31,79,85,.12)}
+.xp-mini.c .ring{
+  position:relative;width:12px;height:12px;border-radius:50%;
+  background:conic-gradient(#FFCC40 0 72%, rgba(31,79,85,.12) 72% 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.xp-mini.c .ring::before{content:"";position:absolute;inset:2px;border-radius:50%;background:#F3EEE6}
+.xp-mini.c .ring span{position:relative;font-size:6px;font-weight:700;color:#1F4F55}
+
+/* annotation tick marks around phone */
+.ann{position:absolute;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:var(--yellow);letter-spacing:.05em;display:flex;align-items:center;gap:.4rem;opacity:.85;z-index:3}
+.ann.r::before{content:'';width:40px;height:1px;background:var(--yellow);opacity:.5}
+.ann.l{flex-direction:row-reverse}
+.ann.l::after{content:'';width:40px;height:1px;background:var(--yellow);opacity:.5}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div class="nav-hint">scroll or use arrow keys</div>
+
+<!-- SLIDE 1: HOOK -->
+<section class="slide slide-title" id="s1">
+  <div class="fog-overlay fog-left"></div>
+  <div class="fog-overlay fog-right"></div>
+  <div class="brand-line"><div class="dot"></div><span>Urban Explorer</span></div>
+  <h1 class="anim">Urban Explorer</h1>
+  <p class="tagline anim anim-d1">Turn every walk into a story.</p>
+  <div class="hand-tag anim anim-d2">— the city beneath the fog</div>
+  <div class="divider anim anim-d3" style="margin:1.5rem auto"></div>
+  <div class="meta anim anim-d4">
+    <span>TU Delft Impact Contest 2026</span>
+    <span>15 customer interviews</span>
+    <span>Working prototype</span>
+  </div>
+  <div class="slide-num"><span class="rule"></span>01 / 15</div>
+</section>
+
+<!-- SLIDE 2: PROBLEM -->
+<section class="slide" id="s2" style="background:linear-gradient(160deg,var(--black),#1a1a1a)">
+  <div class="accent-stripe"></div>
+  <div class="brand-line"><div class="dot"></div><span>The Problem</span></div>
+  <div style="max-width:800px;text-align:center">
+    <p class="label anim">The one problem we chose to fix</p>
+    <h2 class="anim anim-d1" style="margin:.8rem 0 1.5rem">Walking through your own city<br>has become <span style="color:var(--yellow)">invisible.</span></h2>
+    <div class="grid-3 anim anim-d2" style="margin-top:2rem">
+      <div style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:.5rem">🏠</div>
+        <p style="font-size:.85rem;color:rgba(243,238,230,.5)">The default walk disappeared.<br>Hybrid work trapped us indoors.</p>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:.5rem">📍</div>
+        <p style="font-size:.85rem;color:rgba(243,238,230,.5)">Google Maps is boring.<br>15/15 interviewees confirmed.</p>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:.5rem">🏛️</div>
+        <p style="font-size:.85rem;color:rgba(243,238,230,.5)">Centuries of stories sit<br>invisible, 10 meters from us.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num"><span class="rule"></span>02 / 15</div>
+</section>
+
+<!-- SLIDE 3: SOLUTION -->
+<section class="slide" id="s3" style="background:linear-gradient(180deg,#0f2426,var(--black))">
+  <div class="brand-line"><div class="dot"></div><span>The Solution</span></div>
+  <div style="max-width:900px;text-align:center">
+    <p class="label anim">Our positioning</p>
+    <h2 class="anim anim-d1" style="margin:.8rem 0">A game-based city exploration map.</h2>
+    <p class="anim anim-d2" style="max-width:600px;margin:0 auto 2.5rem;color:rgba(243,238,230,.5)">Walking + health + local discovery — through missions, rewards, and story content.</p>
+    <div class="grid-3 anim anim-d3">
+      <div class="card">
+        <span class="icon">🗺️</span>
+        <h3>Fog-of-war map</h3>
+        <p>Every block you walk reveals a hidden tile. The map becomes a record of your feet.</p>
+      </div>
+      <div class="card">
+        <span class="icon">📖</span>
+        <h3>Curated story POIs</h3>
+        <p>60-second narratives tied to the exact place you're standing. Short stories, not long articles.</p>
+      </div>
+      <div class="card">
+        <span class="icon">🛡️</span>
+        <h3>Fair-play engine</h3>
+        <p>Speed-capped. Privacy-first. Solo-friendly. No forced raids, no surveillance tax.</p>
+      </div>
+    </div>
+    <p class="anim anim-d4 small" style="margin-top:2rem;color:rgba(243,238,230,.4)">Next three slides — the feature set, in motion.</p>
+  </div>
+  <div class="slide-num"><span class="rule"></span>03 / 15</div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 4 — FEATURE 1: FOG-OF-WAR MAP
+     ============================================================ -->
+<section class="slide slide-feature" id="s4" style="background:linear-gradient(180deg,#0a1c1e 0%,var(--black) 75%)">
+  <div class="brand-line"><div class="dot"></div><span>Feature · Fog-of-war map</span></div>
+
+  <div class="feature-grid">
+
+    <!-- phone -->
+    <div class="feature-phone-col anim anim-d2">
+      <div class="ann r" style="top:22%;right:-12px">fog layer · parchment blur</div>
+      <div class="ann l" style="top:58%;left:-14px">peephole · 42% × 28%</div>
+      <div class="ann r" style="bottom:22%;right:-10px">player puck</div>
+
+      <div class="phone-stage">
+        <div class="notch"></div>
+        <div class="phone-screen">
+
+          <div class="am" style="position:absolute;inset:0">
+            <div class="water" style="left:28%;top:0;width:3%;height:100%"></div>
+            <div class="water" style="right:-4%;top:60%;width:22%;height:18%;border-radius:20px"></div>
+            <div class="park" style="left:6%;top:10%;width:20%;height:13%"></div>
+            <div class="park" style="left:62%;top:20%;width:26%;height:15%"></div>
+            <div class="park" style="left:18%;top:68%;width:18%;height:12%"></div>
+            <div class="street main" style="left:0;top:26%;width:100%;height:2.5px"></div>
+            <div class="street main" style="left:0;top:50%;width:100%;height:2.5px"></div>
+            <div class="street main" style="left:0;top:76%;width:100%;height:2px"></div>
+            <div class="street" style="left:22%;top:0;width:2px;height:100%"></div>
+            <div class="street" style="left:58%;top:0;width:2px;height:100%"></div>
+            <div class="street" style="left:80%;top:0;width:2px;height:100%"></div>
+            <div class="shield" style="left:4%;top:84%">A12</div>
+            <div class="metro" style="left:55%;top:49%"></div>
+            <div class="lab hood" style="left:20%;top:16%">LOMBOK</div>
+            <div class="lab city" style="left:50%;top:46%">Utrecht</div>
+            <div class="lab district" style="left:72%;top:58%">Oudwijk</div>
+            <div class="lab hood" style="left:25%;top:74%">TRANSWIJK</div>
+          </div>
+
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="r">
+              <svg width="14" height="9" viewBox="0 0 18 10"><rect x="0" y="4" width="2" height="6" rx=".5" fill="currentColor"/><rect x="4" y="2" width="2" height="8" rx=".5" fill="currentColor"/><rect x="8" y="0" width="2" height="10" rx=".5" fill="currentColor"/><rect x="12" y="0" width="2" height="10" rx=".5" fill="currentColor"/></svg>
+              <svg width="20" height="9" viewBox="0 0 25 11"><rect x=".5" y=".5" width="21" height="10" rx="2" stroke="currentColor" fill="none"/><rect x="2" y="2" width="16" height="7" rx="1" fill="currentColor"/><rect x="22" y="3.5" width="2" height="4" rx=".7" fill="currentColor"/></svg>
+            </span>
+          </div>
+
+          <!-- fog peephole around player -->
+          <div class="fog-layer" style="-webkit-mask-image:radial-gradient(ellipse 42% 28% at 50% 50%, transparent 38%, rgba(0,0,0,.65) 60%, black 100%);mask-image:radial-gradient(ellipse 42% 28% at 50% 50%, transparent 38%, rgba(0,0,0,.65) 60%, black 100%)"></div>
+          <div class="bokeh b-cream" style="width:110px;height:110px;left:-28px;top:90px;opacity:.75"></div>
+          <div class="bokeh b-teal"  style="width:130px;height:130px;right:-36px;top:240px;opacity:.7"></div>
+          <div class="bokeh b-rose"  style="width:80px;height:80px;right:20px;bottom:80px;opacity:.55"></div>
+
+          <div class="puck"></div>
+
+          <div class="hud-row">
+            <div class="compass">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F4F55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" fill="#E74C3C" stroke="none"/></svg>
+            </div>
+            <div class="xp-capsule">
+              <span class="lv">5</span><span class="num">8,650&nbsp;<b>XP</b></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- copy -->
+    <div class="feature-copy">
+      <div class="feature-eyebrow anim">Feature <span class="num">· 01 / 03</span></div>
+      <h2 class="anim anim-d1" style="margin:.8rem 0 .4rem">The <em>fog-of-war</em> map.</h2>
+      <p class="anim anim-d2" style="color:rgba(243,238,230,.72);max-width:480px">
+        Your city opens as a blank, fogged canvas. The puck sits at your real-world GPS;
+        a parchment peephole clears around you as you walk. Everything revealed stays revealed.
+      </p>
+
+      <div class="anatomy">
+        <div class="anim anim-d3 row">
+          <span class="n">1</span>
+          <div class="lbl">Parchment fog overlay<span class="desc">Warm-beige blur + soft grain. Never gray, never black.</span></div>
+          <span class="tok">blur 14px · sat .85</span>
+        </div>
+        <div class="anim anim-d3 row">
+          <span class="n">2</span>
+          <div class="lbl">Radial peephole<span class="desc">Ellipse mask follows the player puck. Edge is deliberately soft.</span></div>
+          <span class="tok">42% × 28% · @ 50/50</span>
+        </div>
+        <div class="anim anim-d4 row">
+          <span class="n">3</span>
+          <div class="lbl">Warm-palette basemap<span class="desc">Apple-Maps-style underlay, recoloured to cream/teal/green. Readable in sun.</span></div>
+          <span class="tok">#F1EBDF ground</span>
+        </div>
+        <div class="anim anim-d5 row">
+          <span class="n">4</span>
+          <div class="lbl">Bokeh accents<span class="desc">Cream · teal · rose light blobs suggest "sun through cloud" at fog seams.</span></div>
+          <span class="tok">mix-blend · screen</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="slide-num"><span class="rule"></span>04 / 15</div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 5 — FEATURE 2: HUD
+     ============================================================ -->
+<section class="slide slide-feature" id="s5" style="background:var(--black)">
+  <div class="accent-stripe"></div>
+  <div class="brand-line"><div class="dot"></div><span>Feature · HUD overlay</span></div>
+
+  <div class="feature-grid">
+
+    <!-- phone with Variant A HUD highlighted -->
+    <div class="feature-phone-col anim anim-d2">
+      <div class="ann l" style="top:9%;left:-10px">compass · N-up reset</div>
+      <div class="ann r" style="top:9%;right:-10px">XP capsule · Variant A</div>
+
+      <div class="phone-stage">
+        <div class="notch"></div>
+        <div class="phone-screen">
+
+          <div class="am" style="position:absolute;inset:0">
+            <div class="water" style="left:28%;top:0;width:3%;height:100%"></div>
+            <div class="park" style="left:6%;top:10%;width:20%;height:13%"></div>
+            <div class="park" style="left:62%;top:20%;width:26%;height:15%"></div>
+            <div class="park" style="left:18%;top:68%;width:18%;height:12%"></div>
+            <div class="street main" style="left:0;top:26%;width:100%;height:2.5px"></div>
+            <div class="street main" style="left:0;top:50%;width:100%;height:2.5px"></div>
+            <div class="street main" style="left:0;top:76%;width:100%;height:2px"></div>
+            <div class="street" style="left:22%;top:0;width:2px;height:100%"></div>
+            <div class="street" style="left:58%;top:0;width:2px;height:100%"></div>
+            <div class="street" style="left:80%;top:0;width:2px;height:100%"></div>
+            <div class="shield" style="left:4%;top:84%">A12</div>
+            <div class="metro" style="left:55%;top:49%"></div>
+            <div class="lab hood" style="left:20%;top:16%">LOMBOK</div>
+            <div class="lab city" style="left:50%;top:46%">Utrecht</div>
+          </div>
+
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="r">
+              <svg width="14" height="9" viewBox="0 0 18 10"><rect x="0" y="4" width="2" height="6" rx=".5" fill="currentColor"/><rect x="4" y="2" width="2" height="8" rx=".5" fill="currentColor"/><rect x="8" y="0" width="2" height="10" rx=".5" fill="currentColor"/><rect x="12" y="0" width="2" height="10" rx=".5" fill="currentColor"/></svg>
+              <svg width="20" height="9" viewBox="0 0 25 11"><rect x=".5" y=".5" width="21" height="10" rx="2" stroke="currentColor" fill="none"/><rect x="2" y="2" width="16" height="7" rx="1" fill="currentColor"/><rect x="22" y="3.5" width="2" height="4" rx=".7" fill="currentColor"/></svg>
+            </span>
+          </div>
+
+          <div class="fog-layer" style="-webkit-mask-image:radial-gradient(ellipse 44% 30% at 50% 50%, transparent 40%, rgba(0,0,0,.65) 62%, black 100%);mask-image:radial-gradient(ellipse 44% 30% at 50% 50%, transparent 40%, rgba(0,0,0,.65) 62%, black 100%)"></div>
+          <div class="bokeh b-cream" style="width:90px;height:90px;left:-20px;top:80px;opacity:.8"></div>
+          <div class="bokeh b-teal"  style="width:110px;height:110px;right:-30px;top:220px;opacity:.7"></div>
+
+          <div class="puck"></div>
+
+          <div class="hud-row">
+            <div class="compass">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F4F55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" fill="#E74C3C" stroke="none"/></svg>
+            </div>
+            <div class="xp-capsule">
+              <span class="lv">5</span><span class="num">8,650&nbsp;<b>XP</b></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- copy -->
+    <div class="feature-copy">
+      <div class="feature-eyebrow anim">Feature <span class="num">· 02 / 03</span></div>
+      <h2 class="anim anim-d1" style="margin:.8rem 0 .4rem">The smallest <em>possible</em> HUD.</h2>
+      <p class="anim anim-d2" style="color:rgba(243,238,230,.72);max-width:480px">
+        Compass top-left. XP capsule top-right. That's it. Always visible,
+        never a bar. The map stays the surface; chrome floats over it.
+      </p>
+
+      <div class="anatomy">
+        <div class="anim anim-d3 row">
+          <span class="n">1</span>
+          <div class="lbl">Level coin<span class="desc">Yellow disc, current level. DIN Pro Bold inside the capsule.</span></div>
+          <span class="tok">24 px · #FFCC40</span>
+        </div>
+        <div class="anim anim-d3 row">
+          <span class="n">2</span>
+          <div class="lbl">XP text<span class="desc">Thousands-separated. "XP" in the accent colour; number in cream.</span></div>
+          <span class="tok">DIN Pro Reg 13</span>
+        </div>
+        <div class="anim anim-d4 row">
+          <span class="n">3</span>
+          <div class="lbl">Deep-teal capsule<span class="desc">Pill shape, warm shadow, readable on any map tone.</span></div>
+          <span class="tok">999 px · #1F4F55</span>
+        </div>
+        <div class="anim anim-d5 row">
+          <span class="n">4</span>
+          <div class="lbl">Compass disc<span class="desc">Red-north needle. Single tap resets the map to north-up.</span></div>
+          <span class="tok">40 × 40 · 44 × 44 hit</span>
+        </div>
+      </div>
+
+      <!-- variants we explored -->
+      <div class="hud-variants">
+        <div class="hud-variant pick anim anim-d5">
+          <div class="hd"><span class="n">A · Capsule</span><span class="t">HUD / a</span></div>
+          <div class="demo">
+            <span class="xp-mini a"><span class="d">5</span>8,650&nbsp;<b>XP</b></span>
+          </div>
+          <span class="pick-pill">chosen</span>
+        </div>
+        <div class="hud-variant anim anim-d6">
+          <div class="hd"><span class="n">B · Parchment</span><span class="t">HUD / b</span></div>
+          <div class="demo">
+            <span class="xp-mini b"><span class="n">8,650 XP</span><span class="l">Lv 5</span></span>
+          </div>
+          <span class="note">Cartouche feel.</span>
+        </div>
+        <div class="hud-variant anim anim-d6">
+          <div class="hd"><span class="n">C · Ring</span><span class="t">HUD / c</span></div>
+          <div class="demo">
+            <span class="xp-mini c"><span class="ring"><span>5</span></span>8,650&nbsp;XP</span>
+          </div>
+          <span class="note">Progress ring built-in.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="slide-num"><span class="rule"></span>05 / 15</div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 6 — FEATURE 3: POI DISCOVERY / RIPPLE
+     ============================================================ -->
+<section class="slide slide-feature" id="s6" style="background:linear-gradient(165deg,#0a1c1e 0%,var(--black) 55%,#0f2124 100%)">
+  <div class="brand-line"><div class="dot"></div><span>Feature · POI discovery ripple</span></div>
+
+  <div class="feature-grid">
+
+    <!-- phone with live hex ripple -->
+    <div class="feature-phone-col anim anim-d2">
+      <div class="ann l" style="top:22%;left:-14px">pin · lifts 12 px</div>
+      <div class="ann r" style="top:42%;right:-14px">bloom · yellow pulse</div>
+      <div class="ann l" style="bottom:28%;left:-16px">ring-delay · 140 ms × r</div>
+
+      <div class="phone-stage">
+        <div class="notch"></div>
+        <div class="phone-screen">
+
+          <div class="am" style="position:absolute;inset:0">
+            <div class="water" style="left:28%;top:0;width:3%;height:100%"></div>
+            <div class="park" style="left:6%;top:10%;width:20%;height:13%"></div>
+            <div class="park" style="left:62%;top:20%;width:26%;height:15%"></div>
+            <div class="park" style="left:18%;top:68%;width:18%;height:12%"></div>
+            <div class="street main" style="left:0;top:26%;width:100%;height:2.5px"></div>
+            <div class="street main" style="left:0;top:50%;width:100%;height:2.5px"></div>
+            <div class="street main" style="left:0;top:76%;width:100%;height:2px"></div>
+            <div class="street" style="left:22%;top:0;width:2px;height:100%"></div>
+            <div class="street" style="left:58%;top:0;width:2px;height:100%"></div>
+            <div class="street" style="left:80%;top:0;width:2px;height:100%"></div>
+            <div class="metro" style="left:55%;top:49%"></div>
+            <div class="lab hood" style="left:20%;top:16%">LOMBOK</div>
+            <div class="lab city" style="left:50%;top:46%">Utrecht</div>
+          </div>
+
+          <div class="status-bar">
+            <span>9:41</span>
+            <span class="r">
+              <svg width="14" height="9" viewBox="0 0 18 10"><rect x="0" y="4" width="2" height="6" rx=".5" fill="currentColor"/><rect x="4" y="2" width="2" height="8" rx=".5" fill="currentColor"/><rect x="8" y="0" width="2" height="10" rx=".5" fill="currentColor"/><rect x="12" y="0" width="2" height="10" rx=".5" fill="currentColor"/></svg>
+              <svg width="20" height="9" viewBox="0 0 25 11"><rect x=".5" y=".5" width="21" height="10" rx="2" stroke="currentColor" fill="none"/><rect x="2" y="2" width="16" height="7" rx="1" fill="currentColor"/><rect x="22" y="3.5" width="2" height="4" rx=".7" fill="currentColor"/></svg>
+            </span>
+          </div>
+
+          <!-- animated hexes built by JS -->
+          <div class="hex-layer" id="hex-layer"></div>
+
+          <!-- discovery bloom -->
+          <div class="bloom"></div>
+
+          <!-- bokeh -->
+          <div class="bokeh b-cream" style="width:90px;height:90px;left:-16px;top:110px;opacity:.6"></div>
+          <div class="bokeh b-teal"  style="width:110px;height:110px;right:-30px;top:260px;opacity:.55"></div>
+
+          <!-- POI pin popping up -->
+          <div class="poi-pin" title="Historic landmark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 9h1v12"/><path d="M14 9h1v12"/>
+            </svg>
+          </div>
+
+          <div class="puck"></div>
+
+          <div class="hud-row">
+            <div class="compass">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F4F55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" fill="#E74C3C" stroke="none"/></svg>
+            </div>
+            <div class="xp-capsule">
+              <span class="lv">5</span><span class="num" id="xp-num">8,650&nbsp;<b>XP</b></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- copy -->
+    <div class="feature-copy">
+      <div class="feature-eyebrow anim">Feature <span class="num">· 03 / 03</span></div>
+      <h2 class="anim anim-d1" style="margin:.8rem 0 .4rem">The <em>discovery</em> moment.</h2>
+      <p class="anim anim-d2" style="color:rgba(243,238,230,.72);max-width:480px">
+        Approach a point of interest — the fog lifts outward in rings from the puck,
+        the tile blooms warm yellow, a pin rises, and a 60-second story of the place unlocks.
+        Built on axial hex coordinates with ring-distance delays.
+      </p>
+
+      <div class="anatomy">
+        <div class="anim anim-d3 row">
+          <span class="n">1</span>
+          <div class="lbl">Ring-cascade reveal<span class="desc">Each hex dissolves at <code>t = ringDelay × N</code>. Feels like a light lifting outward.</span></div>
+          <span class="tok">140 ms · ring</span>
+        </div>
+        <div class="anim anim-d3 row">
+          <span class="n">2</span>
+          <div class="lbl">Yellow bloom<span class="desc">Radial pulse at the POI centre — the one hero moment on the screen.</span></div>
+          <span class="tok">shadow-bloom · 24 px</span>
+        </div>
+        <div class="anim anim-d4 row">
+          <span class="n">3</span>
+          <div class="lbl">Pin lift<span class="desc">Deep-teal pin rises 12 px with cream monoline glyph — stamp-in-journal feel.</span></div>
+          <span class="tok">cubic-bezier ease-out</span>
+        </div>
+        <div class="anim anim-d5 row">
+          <span class="n">4</span>
+          <div class="lbl">XP ticks · haptic pairs<span class="desc">Capsule increments, soft pulse on tile clear, double-pulse on hidden gem.</span></div>
+          <span class="tok">tabular-nums</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="slide-num"><span class="rule"></span>06 / 15</div>
+</section>
+
+
+<!-- SLIDE 7: VALUE PROP -->
+<section class="slide" id="s7" style="background:var(--black)">
+  <div class="brand-line"><div class="dot"></div><span>Value Proposition</span></div>
+  <div style="max-width:900px;text-align:center">
+    <p class="label anim">How it feels — and what we deliver</p>
+    <div class="grid-3 anim anim-d1" style="margin:2rem 0">
+      <div class="stat">
+        <div style="font-size:2.5rem;margin-bottom:.5rem">💡</div>
+        <h3 style="color:var(--cream)">"What's that?"</h3>
+        <p style="font-size:.85rem">Curiosity triggered</p>
+      </div>
+      <div class="stat">
+        <div style="font-size:2.5rem;margin-bottom:.5rem">🚀</div>
+        <h3 style="color:var(--cream)">"Let's go!"</h3>
+        <p style="font-size:.85rem">Movement activated</p>
+      </div>
+      <div class="stat">
+        <div style="font-size:2.5rem;margin-bottom:.5rem">🏆</div>
+        <h3 style="color:var(--cream)">"We unlocked it!"</h3>
+        <p style="font-size:.85rem">Achievement earned</p>
+      </div>
+    </div>
+    <div class="divider anim anim-d2" style="margin:1.5rem auto"></div>
+    <div class="anim anim-d3" style="background:rgba(255,204,64,.06);border:1px solid rgba(255,204,64,.15);border-radius:10px;padding:1.2rem 2rem;display:inline-block;margin-top:1rem">
+      <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--yellow)">+3 km / week</div>
+      <div style="font-size:.8rem;color:rgba(243,238,230,.5);margin-top:.3rem">Target increase per active user &middot; validated by 13/15 interviewees</div>
+    </div>
+  </div>
+  <div class="slide-num"><span class="rule"></span>07 / 15</div>
+</section>
+
+<!-- SLIDE 8: CORE LOOP -->
+<section class="slide" id="s8" style="background:linear-gradient(135deg,#0a1c1e,var(--black) 70%)">
+  <div class="brand-line"><div class="dot"></div><span>The Core Loop</span></div>
+  <div style="max-width:850px">
+    <h2 class="anim" style="text-align:center;margin-bottom:2.5rem">The Core Loop</h2>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div class="anim anim-d1" style="display:flex;align-items:center;gap:1.5rem;padding:1.2rem 0;border-bottom:1px solid rgba(243,238,230,.06)">
+        <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--yellow);min-width:50px;text-align:right">1</div>
+        <div>
+          <h3>Spot a glowing quest nearby</h3>
+          <p style="font-size:.85rem">The fog-of-war map hints at something hidden just around the corner.</p>
+        </div>
+      </div>
+      <div class="anim anim-d2" style="display:flex;align-items:center;gap:1.5rem;padding:1.2rem 0;border-bottom:1px solid rgba(243,238,230,.06)">
+        <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--yellow);min-width:50px;text-align:right">2</div>
+        <div>
+          <h3>Walk to it</h3>
+          <p style="font-size:.85rem">Speed cap applies &mdash; no driving, no spoofing. Real effort only.</p>
+        </div>
+      </div>
+      <div class="anim anim-d3" style="display:flex;align-items:center;gap:1.5rem;padding:1.2rem 0;border-bottom:1px solid rgba(243,238,230,.06)">
+        <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--yellow);min-width:50px;text-align:right">3</div>
+        <div>
+          <h3>Unlock a 60-second story + XP</h3>
+          <p style="font-size:.85rem">The tile clears. You learn the story of the place. You earn progress.</p>
+        </div>
+      </div>
+      <div class="anim anim-d4" style="display:flex;align-items:center;gap:1.5rem;padding:1.2rem 0">
+        <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--yellow);min-width:50px;text-align:right">4</div>
+        <div>
+          <h3>Share &middot; start a streak</h3>
+          <p style="font-size:.85rem">Invite friends, compete for city coverage, build your explorer journal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num"><span class="rule"></span>08 / 15</div>
+</section>
+
+<!-- SLIDE 9: WHY NOW -->
+<section class="slide" id="s9" style="background:var(--black)">
+  <div class="accent-stripe"></div>
+  <div class="brand-line"><div class="dot"></div><span>Why Now</span></div>
+  <div style="max-width:900px;text-align:center">
+    <h2 class="anim" style="margin-bottom:2.5rem">Why now &mdash; and why users trust us</h2>
+    <div class="grid-3 anim anim-d1">
+      <div class="card" style="text-align:center">
+        <span class="icon">🏠</span>
+        <h3>Post-pandemic crisis</h3>
+        <div class="divider-sm" style="margin:.8rem auto"></div>
+        <p>The "default walk" disappeared. Hybrid work trapped millions in a sedentary home-office loop.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <span class="icon">🔐</span>
+        <h3>Privacy awakening</h3>
+        <div class="divider-sm" style="margin:.8rem auto"></div>
+        <p>Users reject surveillance apps. We're EU-hosted, foreground-only GPS, privacy-first by design.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <span class="icon">📱</span>
+        <h3>Tech finally ready</h3>
+        <div class="divider-sm" style="margin:.8rem auto"></div>
+        <p>OSM + Mapbox + React Native + low-ops backends. A 3-person team can now ship what used to need a studio.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num"><span class="rule"></span>09 / 15</div>
+</section>
+
+<!-- SLIDE 10: CUSTOMER PROFILE -->
+<section class="slide" id="s10" style="background:linear-gradient(180deg,var(--black),#0f1a1c)">
+  <div class="brand-line"><div class="dot"></div><span>Customer Profile</span></div>
+  <div style="max-width:950px;text-align:center">
+    <p class="label anim">Value Proposition Canvas</p>
+    <h2 class="anim anim-d1" style="margin:.6rem 0 2.5rem">Who pays &mdash; and who decides</h2>
+    <div class="grid-3 anim anim-d2">
+      <div class="card" style="border-top:2px solid var(--teal)">
+        <div class="label" style="color:var(--teal);margin-bottom:.8rem">User</div>
+        <h3 style="font-size:1.1rem">Urban residents 18&ndash;45</h3>
+        <p style="margin-top:.5rem">Curious locals, students, solo travelers in dense EU cities.</p>
+        <div style="margin-top:.8rem">
+          <span class="tag teal">Validated</span>
+          <span style="font-size:.75rem;color:rgba(243,238,230,.4)">15 street interviews</span>
+        </div>
+      </div>
+      <div class="card" style="border-top:2px solid var(--yellow)">
+        <div class="label" style="margin-bottom:.8rem">Payer</div>
+        <h3 style="font-size:1.1rem">Three-sided model</h3>
+        <div style="margin-top:.5rem;text-align:left">
+          <p style="font-size:.8rem;padding:.3rem 0"><strong style="color:var(--yellow)">B2C</strong> &mdash; Freemium + cheap sub</p>
+          <p style="font-size:.8rem;padding:.3rem 0"><strong style="color:var(--yellow)">B2B</strong> &mdash; Sponsored map beacons</p>
+          <p style="font-size:.8rem;padding:.3rem 0"><strong style="color:var(--yellow)">B2G</strong> &mdash; Municipality contracts</p>
+        </div>
+      </div>
+      <div class="card" style="border-top:2px solid var(--beige)">
+        <div class="label" style="color:var(--beige);margin-bottom:.8rem">Decision-Maker</div>
+        <h3 style="font-size:1.1rem">City tourism office</h3>
+        <p style="margin-top:.5rem">Routed through city council approval. The Randstad has 11 within 45 min of this room.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num"><span class="rule"></span>10 / 15</div>
+</section>
+
+<!-- SLIDE 11: MARKET -->
+<section class="slide" id="s11" style="background:var(--black)">
+  <div class="brand-line"><div class="dot"></div><span>Market</span></div>
+  <div style="max-width:900px;text-align:center">
+    <p class="label anim">Market Focus & Sizing</p>
+    <h2 class="anim anim-d1" style="margin:.8rem 0 2.5rem">The Randstad Beachhead</h2>
+    <div class="grid-3 anim anim-d2">
+      <div class="stat">
+        <div class="number" style="color:rgba(243,238,230,.3)">&euro;30B</div>
+        <div class="unit">TAM &mdash; EU mobile gaming by 2026</div>
+        <div style="font-size:.7rem;color:rgba(243,238,230,.25);margin-top:.3rem">200M+ location-based players</div>
+      </div>
+      <div class="stat">
+        <div class="number" style="color:var(--teal)">230M</div>
+        <div class="unit">SAM &mdash; Active location-based players</div>
+        <div style="font-size:.7rem;color:rgba(243,238,230,.25);margin-top:.3rem">Major EU tech hubs</div>
+      </div>
+      <div class="stat">
+        <div class="number">&euro;6M</div>
+        <div class="unit">SOM &mdash; Randstad beachhead ARR(Annual Recurring Revenue)</div>
+        <div style="font-size:.7rem;color:rgba(243,238,230,.25);margin-top:.3rem">400K early adopters &middot; &euro;15 ARPU(Average Revenue Per User)</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num"><span class="rule"></span>11 / 15</div>
+</section>
+
+<!-- SLIDE 12: BUSINESS MODEL -->
+<section class="slide" id="s12" style="background:linear-gradient(160deg,#0a1210,var(--black) 60%)">
+  <div class="accent-stripe"></div>
+  <div class="brand-line"><div class="dot"></div><span>Business Model</span></div>
+  <div style="max-width:950px;text-align:center">
+    <p class="label anim">How we enter first</p>
+    <h2 class="anim anim-d1" style="margin:.8rem 0 2.5rem">Users first. Data second. Revenue third.</h2>
+    <div class="grid-3 anim anim-d2">
+      <div class="card">
+        <div class="label" style="margin-bottom:.5rem">Phase 1 &mdash; Now &rarr; 2027</div>
+        <h3 style="color:var(--yellow)">B2C Freemium</h3>
+        <div class="divider-sm"></div>
+        <p>Free map-clearing + cheap sub (&euro;5&ndash;10/yr) + cosmetics.</p>
+        <p style="margin-top:.5rem;font-size:.8rem;color:var(--teal)">Goal: collect user &amp; behavior data</p>
+      </div>
+      <div class="card">
+        <div class="label" style="margin-bottom:.5rem">Phase 2 &mdash; 2027</div>
+        <h3 style="color:var(--yellow)">B2B Beacons</h3>
+        <div class="divider-sm"></div>
+        <p>Local shops &amp; museums pay for glowing "Discovery Caches" on the map.</p>
+        <p style="margin-top:.5rem;font-size:.8rem;color:var(--teal)">Our replacement for ads</p>
+      </div>
+      <div class="card">
+        <div class="label" style="margin-bottom:.5rem">Phase 3 &mdash; 2028</div>
+        <h3 style="color:var(--yellow)">B2G Contracts</h3>
+        <div class="divider-sm"></div>
+        <p>Municipalities pay for foot-traffic redistribution &amp; anonymized walking data.</p>
+        <p style="margin-top:.5rem;font-size:.8rem;color:var(--teal)">When &euro;6M beachhead becomes real</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num"><span class="rule"></span>12 / 15</div>
+</section>
+
+<!-- SLIDE 13: COMPETITION -->
+<section class="slide" id="s13" style="background:var(--black)">
+  <div class="brand-line"><div class="dot"></div><span>Competition</span></div>
+  <div style="max-width:900px">
+    <div style="text-align:center">
+      <p class="label anim">Competitive landscape</p>
+      <h2 class="anim anim-d1" style="margin:.8rem 0 2rem">They leave a gap. We fill it.</h2>
+    </div>
+    <div class="anim anim-d2" style="background:rgba(243,238,230,.03);border:1px solid rgba(243,238,230,.06);border-radius:12px;overflow:hidden">
+      <div class="comp-row">
+        <div class="comp-name">Pok&eacute;mon GO</div>
+        <div class="comp-con">Grindy &middot; battery-heavy &middot; privacy-invasive &middot; forced raids</div>
+        <div class="comp-verdict">Outdoors &check;</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">Fog of World</div>
+        <div class="comp-con">Passive tracker &middot; no quests &middot; no stories &middot; no reason to open</div>
+        <div class="comp-verdict">Map &check;</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">Geocaching</div>
+        <div class="comp-con">High-effort physical containers &middot; excludes casual users</div>
+        <div class="comp-verdict">Discovery &check;</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">Google Maps</div>
+        <div class="comp-con">Accurate routing &middot; zero discovery &middot; zero story &middot; zero play</div>
+        <div class="comp-verdict">Everyone &check;</div>
+      </div>
+    </div>
+    <div class="anim anim-d3" style="margin-top:2rem;text-align:center">
+      <div class="divider" style="margin:0 auto 1rem"></div>
+      <p class="quote" style="font-size:clamp(.95rem,1.4vw,1.2rem)">We sit between maps, games, and cultural guides &mdash; more engaging than a guide, more meaningful than a game, more exploratory than a map.</p>
+    </div>
+  </div>
+  <div class="slide-num"><span class="rule"></span>13 / 15</div>
+</section>
+
+<!-- SLIDE 14: TRACTION & ROADMAP -->
+<section class="slide" id="s14" style="background:linear-gradient(135deg,var(--black),#0f1a1c)">
+  <div class="accent-stripe"></div>
+  <div class="brand-line"><div class="dot"></div><span>Traction</span></div>
+  <div style="max-width:950px">
+    <div style="text-align:center">
+      <p class="label anim">Where we are &mdash; not where we plan to be</p>
+      <h2 class="anim anim-d1" style="margin:.8rem 0 2.5rem">Traction &amp; Roadmap</h2>
+    </div>
+    <div class="timeline anim anim-d2">
+      <div class="phase">
+        <div class="label" style="color:var(--yellow)">Today (Q2 2026)</div>
+        <ul>
+          <li>Working prototype (iOS + Android)</li>
+          <li>15 formal customer interviews</li>
+          <li>Advanced Category eligible</li>
+          <li>Fog-of-war + XP + POI system live</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="label">Q3&ndash;Q4 2026</div>
+        <ul>
+          <li>Validate at TU Delft contest</li>
+          <li>Ship MVP to first testers</li>
+          <li>Scale to 1,000 users (Randstad)</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="label">2027+</div>
+        <ul>
+          <li>Randstad city pilot partnership</li>
+          <li>Scale 1K &rarr; 10K+ users</li>
+          <li>First B2G contract signed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num"><span class="rule"></span>14 / 15</div>
+</section>
+
+<!-- SLIDE 15: TEAM + ASK -->
+<section class="slide" id="s15" style="background:linear-gradient(135deg,var(--black) 0%,#1a2a2c 100%)">
+  <div class="fog-overlay fog-left"></div>
+  <div class="fog-overlay fog-right"></div>
+  <div class="brand-line"><div class="dot"></div><span>Team</span></div>
+  <div style="max-width:900px;text-align:center">
+    <h2 class="anim" style="margin-bottom:2rem">Let's build this together.</h2>
+    <div class="grid-3 anim anim-d1" style="margin-bottom:2rem">
+      <div class="team-member">
+        <div class="avatar" style="background:var(--yellow)">AL</div>
+        <h3>Alessandro Lombardo</h3>
+        <p>Lead &middot; Product &amp; Architecture</p>
+        <p style="color:var(--teal);font-size:.75rem;margin-top:.2rem">Pitching today</p>
+      </div>
+      <div class="team-member">
+        <div class="avatar" style="background:var(--teal);color:var(--dark)">RZ</div>
+        <h3>Ruilin Zhou</h3>
+        <p>Business &middot; Go-to-Market</p>
+        <p style="color:var(--teal);font-size:.75rem;margin-top:.2rem">ESSEC</p>
+      </div>
+      <div class="team-member">
+        <div class="avatar" style="background:var(--beige);color:var(--dark)">RW</div>
+        <h3>Ruowen</h3>
+        <p>Public Relations &middot; POI Research</p>
+        <p style="color:var(--teal);font-size:.75rem;margin-top:.2rem">Map refining &amp; research</p>
+      </div>
+    </div>
+    <div class="divider anim anim-d2" style="margin:1.5rem auto"></div>
+    <div class="anim anim-d3" style="margin-top:1.5rem">
+      <p class="label" style="margin-bottom:.8rem">We're looking for</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <span class="tag">Pilot city partners</span>
+        <span class="tag">Early users (TU Delft beta)</span>
+        <span class="tag">Storytelling collaborators</span>
+      </div>
+    </div>
+    <div class="anim anim-d4" style="margin-top:2rem">
+      <p style="font-size:.8rem;color:rgba(243,238,230,.3)">alessandro97150@gmail.com &middot; ruilin.zhou@essec.edu</p>
+    </div>
+    <div class="anim anim-d5" style="margin-top:2rem">
+      <p class="tagline" style="font-family:var(--font-display);font-style:italic;font-size:1.3rem;color:var(--teal)">Turning the real world into a playable map &mdash; one step at a time.</p>
+    </div>
+  </div>
+  <div class="slide-num"><span class="rule"></span>15 / 15</div>
+</section>
+
+<script>
+// ----- POI ripple: axial hex grid with ring-based delay
+// Recipe from specs/poi-ripple/HexGrid.jsx
+(function buildHexGrid(){
+  const layer = document.getElementById('hex-layer');
+  if (!layer) return;
+  const HEX_SIZE = 13;
+  const HEX_W = Math.sqrt(3) * HEX_SIZE;
+  const HEX_H = 2 * HEX_SIZE;
+  const ROW_V = HEX_H * 0.75;
+  const RADIUS = 5;
+
+  for (let q = -RADIUS; q <= RADIUS; q++){
+    for (let r = -RADIUS; r <= RADIUS; r++){
+      const s = -q - r;
+      if (Math.abs(s) > RADIUS) continue;
+      const ring = (Math.abs(q) + Math.abs(r) + Math.abs(s)) / 2;
+      const x = HEX_W * (q + r / 2);
+      const y = ROW_V * r;
+      const hex = document.createElement('div');
+      hex.className = 'hex';
+      hex.style.setProperty('--x', x + 'px');
+      hex.style.setProperty('--y', y + 'px');
+      hex.style.setProperty('--r', ring);
+      hex.style.opacity = Math.max(.6, 1 - (ring * 0.04));
+      layer.appendChild(hex);
+    }
+  }
+})();
+
+// ----- XP counter tick-up when the POI slide is in view
+(function xpCounter(){
+  const el = document.getElementById('xp-num');
+  if (!el) return;
+  const base = 8650;
+  let running = false;
+  const fmt = v => v.toLocaleString('en-US') + '&nbsp;<b>XP</b>';
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !running){
+        running = true;
+        let t = 0;
+        const iv = setInterval(() => {
+          t += 1;
+          const n = base + Math.floor(Math.sin(t * 0.18) * 40 + t * 3);
+          el.innerHTML = fmt(n);
+          if (t > 140){ clearInterval(iv); running = false; el.innerHTML = fmt(base); }
+        }, 80);
+      }
+    });
+  }, { threshold: 0.45 });
+  io.observe(document.getElementById('s6'));
+})();
+
+// Progress bar
+const progress = document.getElementById('progress');
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progress.style.width = pct + '%';
+});
+
+// Keyboard navigation
+let current = 0;
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    current = Math.min(current + 1, total - 1);
+    slides[current].scrollIntoView({ behavior: 'smooth' });
+  } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    current = Math.max(current - 1, 0);
+    slides[current].scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+// Intersection observer to track current slide
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = Array.from(slides).indexOf(entry.target);
+      if (idx >= 0) current = idx;
+    }
+  });
+}, { threshold: 0.5 });
+slides.forEach(s => observer.observe(s));
+
+// Fade-in animations on scroll (replay on each visit)
+const animObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const anims = entry.target.querySelectorAll('.anim');
+    if (entry.isIntersecting) {
+      anims.forEach(el => { el.style.animationPlayState = 'running'; el.style.opacity = ''; });
+    } else {
+      anims.forEach(el => { el.style.opacity = '0'; el.style.animationPlayState = 'paused'; });
+    }
+  });
+}, { threshold: 0.3 });
+slides.forEach(s => animObserver.observe(s));
+
+// Hide nav hint after first scroll
+let hintHidden = false;
+window.addEventListener('scroll', () => {
+  if (!hintHidden && window.scrollY > 50) {
+    document.querySelector('.nav-hint').style.opacity = '0';
+    hintHidden = true;
+  }
+}, { passive: true });
+</script>
+</body>
+</html>
